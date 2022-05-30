@@ -1,0 +1,323 @@
+USE [GamEZDb]
+GO
+/****** Object:  Table [dbo].[__MigrationHistory]    Script Date: 30/05/2022 02:25:30 ã ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[__MigrationHistory](
+	[MigrationId] [nvarchar](150) NOT NULL,
+	[ContextKey] [nvarchar](300) NOT NULL,
+	[Model] [varbinary](max) NOT NULL,
+	[ProductVersion] [nvarchar](32) NOT NULL,
+ CONSTRAINT [PK_dbo.__MigrationHistory] PRIMARY KEY CLUSTERED 
+(
+	[MigrationId] ASC,
+	[ContextKey] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[AspNetRoles]    Script Date: 30/05/2022 02:25:30 ã ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetRoles](
+	[Id] [nvarchar](128) NOT NULL,
+	[Name] [nvarchar](256) NOT NULL,
+ CONSTRAINT [PK_dbo.AspNetRoles] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: 30/05/2022 02:25:30 ã ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserClaims](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserId] [nvarchar](128) NOT NULL,
+	[ClaimType] [nvarchar](max) NULL,
+	[ClaimValue] [nvarchar](max) NULL,
+ CONSTRAINT [PK_dbo.AspNetUserClaims] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: 30/05/2022 02:25:30 ã ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserLogins](
+	[LoginProvider] [nvarchar](128) NOT NULL,
+	[ProviderKey] [nvarchar](128) NOT NULL,
+	[UserId] [nvarchar](128) NOT NULL,
+ CONSTRAINT [PK_dbo.AspNetUserLogins] PRIMARY KEY CLUSTERED 
+(
+	[LoginProvider] ASC,
+	[ProviderKey] ASC,
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: 30/05/2022 02:25:30 ã ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserRoles](
+	[UserId] [nvarchar](128) NOT NULL,
+	[RoleId] [nvarchar](128) NOT NULL,
+ CONSTRAINT [PK_dbo.AspNetUserRoles] PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC,
+	[RoleId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[AspNetUsers]    Script Date: 30/05/2022 02:25:30 ã ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUsers](
+	[Id] [nvarchar](128) NOT NULL,
+	[Email] [nvarchar](256) NULL,
+	[EmailConfirmed] [bit] NOT NULL,
+	[PasswordHash] [nvarchar](max) NULL,
+	[SecurityStamp] [nvarchar](max) NULL,
+	[PhoneNumber] [nvarchar](max) NULL,
+	[PhoneNumberConfirmed] [bit] NOT NULL,
+	[TwoFactorEnabled] [bit] NOT NULL,
+	[LockoutEndDateUtc] [datetime] NULL,
+	[LockoutEnabled] [bit] NOT NULL,
+	[AccessFailedCount] [int] NOT NULL,
+	[UserName] [nvarchar](256) NOT NULL,
+ CONSTRAINT [PK_dbo.AspNetUsers] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Category]    Script Date: 30/05/2022 02:25:30 ã ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Category](
+	[CategoryID] [int] IDENTITY(1,1) NOT NULL,
+	[CategoryName] [nvarchar](200) NOT NULL,
+ CONSTRAINT [PK_Category] PRIMARY KEY CLUSTERED 
+(
+	[CategoryID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Comment]    Script Date: 30/05/2022 02:25:30 ã ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Comment](
+	[CommentID] [int] IDENTITY(1,1) NOT NULL,
+	[Comment] [nvarchar](max) NOT NULL,
+	[userid] [nvarchar](128) NOT NULL,
+ CONSTRAINT [PK_Comment] PRIMARY KEY CLUSTERED 
+(
+	[CommentID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Contact]    Script Date: 30/05/2022 02:25:30 ã ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Contact](
+	[ContactID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](200) NOT NULL,
+	[Subject] [nvarchar](200) NOT NULL,
+	[Email] [nvarchar](200) NOT NULL,
+	[Message] [nvarchar](max) NOT NULL,
+	[Date] [nvarchar](50) NOT NULL,
+	[Opened] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_Contact] PRIMARY KEY CLUSTERED 
+(
+	[ContactID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Game]    Script Date: 30/05/2022 02:25:30 ã ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Game](
+	[GameID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](200) NOT NULL,
+	[Description] [nvarchar](max) NOT NULL,
+	[Image] [nvarchar](max) NOT NULL,
+	[NumberOfDownload] [int] NOT NULL,
+	[Status] [nvarchar](50) NOT NULL,
+	[Date] [nvarchar](50) NOT NULL,
+	[categoryid] [int] NOT NULL,
+ CONSTRAINT [PK_Game] PRIMARY KEY CLUSTERED 
+(
+	[GameID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Information]    Script Date: 30/05/2022 02:25:30 ã ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Information](
+	[InfoID] [int] IDENTITY(1,1) NOT NULL,
+	[About] [nvarchar](max) NOT NULL,
+	[WhatWeDo] [nvarchar](max) NOT NULL,
+	[Mobile] [nvarchar](50) NULL,
+	[Address] [nvarchar](200) NULL,
+	[FaceBook] [nvarchar](max) NULL,
+	[Twitter] [nvarchar](max) NULL,
+	[Gmail] [nvarchar](max) NULL,
+ CONSTRAINT [PK_Information] PRIMARY KEY CLUSTERED 
+(
+	[InfoID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+INSERT [dbo].[__MigrationHistory] ([MigrationId], [ContextKey], [Model], [ProductVersion]) VALUES (N'202205260223123_InitialCreate', N'GamEZ.Models.ApplicationDbContext', 0x1F8B0800000000000400DD5C5B6FE3B6127E3FC0F90F829ECE39C85AB99C5D6C03BB45EA243D413717ACB38BE2BC2C68897684952855A2D204457F591FFA93FA173A942859BCE9622BB6532CB0B0C8E137C3E1901C0E87F9F3F73FC6DF3D8581F58893D48FC8C43E1A1DDA16266EE4F96439B133BA78F3DEFEEEDB7FFE637CE1854FD6E792EE84D1414B924EEC074AE353C749DD071CA27414FA6E12A5D1828EDC2874901739C78787DF3847470E06081BB02C6BFC3123D40F71FE019FD388B838A6190AAE230F07292F879A598E6ADDA010A73172F1C4FE018517FF1F1574B67516F8086498E160615B889088220A129E7E4AF18C261159CE622840C1FD738C816E81821473C94F57E45D3B7178CC3AE1AC1A96506E96D228EC097874C2B5E2C8CDD7D2AD5D690DF47601FAA5CFACD7B9EE26F69587F3A28F51000A90199E4E8384114FECEB8AC5591ADF603A2A1B8E0AC8CB04E07E8992AFA33AE281D5B9DD416545C7A343F6EFC09A6601CD123C2138A3090A0EACBB6C1EF8EE8FF8F93EFA8AC9E4E468BE3879FFF61DF24EDEFD179FBCADF714FA0A74420114DD25518C13900D2FAAFEDB9623B673E48655B35A9B422B604B30216CEB1A3D7DC064491F60AA1CBFB7AD4BFF097B650937AE4FC487F9038D6892C1E74D1604681EE0AADE69E4C9FE6FE07AFCF6DD205C6FD0A3BFCC875EE20F13278179F51107796DFAE0C7C5F412C6FB0B27BB4CA2907D8BF655D47E994559E2B2CE4446927B942C3115A51B3B2BE3ED64D20C6A78B32E51F7DFB499A4AA796B495987D69909258B6DCF8652DE97E5DBD9E2CEE218062F372DA6912683AB6F5323A9DD8195D7AECCE5A8ABB910E8C6DF79F5BB08911F0CB0FC75E0023EC7C24F425CF5F2FB088C0D91DE32DFA13485D9EFFD0FA50F0DA2C3CF01449F61374BC028671485F18B73BB7B8808BEC9C239B3F5EDF11A6C68EE7F892E914BA3E482B0561BE37D88DCAF51462F88778E28FE44DD12907DDEFB61778041C439735D9CA69760CCD89B46E052978057849E1CF786634BD3AEDD8F6980FC50EF7F488BE8979274E583E829143FC440A6F3459A44FD102D7DD24DD492D42C6A41D12A2A27EB2B2A03EB2629A7340B9A13B4CA59500DE6DDE52334BC7B97C3EEBF7FB7D9E66D5A0B6A6A9CC10A897FC00427B08C797788529C90D50874593776E12CE4C3C798BEF8DE9473FA8C826C68566BCD867C11187E36E4B0FB3F1B7231A1F8D1F79857D2E1D05312037C277AFD79AA7DCE49926D7B3A08DDDC36F3EDAC01A6E97296A691EBE7B34013EEE2C10A517EF0E1ACF6C845D11B39FA011D0343F7D9960725D0375B36AA5B728E034CB175E616E1C0294A5DE4A96A840E793D042B77548D60AB288828DC7F149E60E938618D103B04A530537D42D569E113D78F51D0AA25A965C72D8CF5BDE221D79CE31813C6B055135D98EB831E4C808A8F34286D1A1A3B358B6B364483D76A1AF336177635EE4A2C622B36D9E23B1BEC92FB6F2F6298CD1ADB827136ABA48B00C600DE2E0C949F55BA1A807C70D93703954E4C0603E52ED5560C54D4D80E0C5454C9AB33D0E288DA75FCA5F3EABE99A77850DEFEB6DEA8AE1DD8A6A08F3D33CDC2F78436145AE04435CFF339ABC44F5473380339F9F92CE5AEAE6C220C7C86A918B259F9BB5A3FD46906918DA8097065682DA0FCEA4F015226540FE1CA585EA374DC8BE8015BC6DD1A61F9DA2FC1D66C40C5AE5F81D608CD17A5B271763A7D543DABAC4131F24E87851A8EC620E4C54BEC7807A598E2B2AA62BAF8C27DBCE15AC7F8603428A8C5733528A9ECCCE05A2A4DB35D4B3A87AC8F4BB6919624F7C9A0A5B233836B89DB68BB92344E410FB7602315895BF84093AD8C7454BB4D5537768A9C285E30760CC953E36B14C73E59D692A97889352B32A9A66F66FD138DC202C371534DBE51256DC58946095A62A9165883A4977E92D27344D11CB138CFD40B1532EDDE6A58FE4B96F5ED531DC4721F28A9D9EFA28570612FECB2AA1BC25B5F42DF42E6CBE40174CDC8EB9B5B2CAD0D0528D1C4ECA7519085C4EC5A995B173777F5F645898A307624F915D749D193E2E08A4AEF3424EA74D878782A9F65FD21324398145D7A9C75559BBC50334A1994AAA39802553B1B3293F3D27198648FB0FF28B522BCCC5CE2692875005ED413A396C9A080D5EABAA38AC926754CB1A63BA29451528794AA7A4859CF1B1184AC57AC8567D0A89EA23B073553A48EAED67647D6E48CD4A135D56B606B6496EBBAA36AD24AEAC09AEAEED8AB1C1379F9DCE3DDCA784E5963BB2A0EB19BED57068C97590B87D9EE6A77F575A05A714F2C7E1BAF80F1F2BDB423E3496E0D3B2AA2169BD99101C3BCDA08F7DBE262D378296FC6142EAD8505BDE9D2DE8CD7CF5A5FD42694239C4C5271AF8E72D2916DCC8F4FED8F6294F35441625BA51A61337F4E290E478C6034FB3998063E664B7749708D88BFC0292D1235ECE3C3A363E975CDFEBC7471D2D40B34C74FD3731771CCB69073451E51E23EA044CD80D8E035C80A54092E5F110F3F4DEC5FF356A7799C82FDCA8B0FACABF413F17FCEA0E23EC9B0F59B9AD1394C767C87F71895A0BFBD8A870EDD557EF5D397A2E981759BC0743AB50E2545AF33FCE2F3875ED2144D379066ED4711AF77B609AF0FB4A8D26C59FFB1C1DCA7833C3428A5FC57889EFEDD5734ED63828D10350F0686C21B4485A60701EB60191F0378F049F3C700FD3AAB7F1CB08E68C687013EE90F263F0BE8BE0C952D77B80F698E4ADB5892723DB7A6556F9463B9EBBD49C9BEDE68A2AB19D63DE006CDA2DECC457965D9C9836D9D9AE4E3C1B07769F72F9E71BC2F49C62BA77DB7B9C5DB4C276EB83EFA5B6511EF41DE9B268F67F7B9C2DBB63553EC77CF132EFB6504EF99B1F16D7EF779BFDB3636538078CF8DAD5776EF9ED9DAAEF6CF1D5B5AE72D74E7B9BA6ADA91E10E4717456ECBC52D42EE70FC9F4760048547593CA1D4277F3525AEB6305C9198999AB3CE64C6CAC451F82A14CD6CFBF5956FF88D9DE534CD6C0DB99A4DBCF9FADFC89BD334F3366440EE228B589B83A8CBEC6E59C79A92A55E53D6B0D0939624F5369FB5F142FE3525090FA21461F6186E975F4F4EF0202A1972EAF4C801562F8A61EFACFD8D45D8BF537FB982607F71916057D8352B9A2BB288CACD5B92A824912234D798220FB6D4B384FA0BE452A86601E8FC0D781ED463D72073EC5D91DB8CC619852EE3701E08012FE60434F1CF139D4599C7B731FB4A87E80288E9B3C0FD2DF93EF303AF92FB521313324030EF82877BD9585216F65D3E57483711E908C4D5573945F7388C03004B6FC90C3DE2756403F3FB8097C87D5E45004D20ED0321AA7D7CEEA36582C29463ACDAC327D8B0173E7DFB174B49257E6A540000, N'6.2.0-61023')
+GO
+INSERT [dbo].[AspNetRoles] ([Id], [Name]) VALUES (N'1851e4b5-036d-484c-93db-357ecf3e5b36', N'Administrator')
+GO
+INSERT [dbo].[AspNetRoles] ([Id], [Name]) VALUES (N'dde84ec3-61dd-4ad7-8cba-fe73fd486f25', N'publisher')
+GO
+INSERT [dbo].[AspNetRoles] ([Id], [Name]) VALUES (N'1971de6e-0eaa-4663-98ad-db63c96d39db', N'User')
+GO
+INSERT [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'b6a36c5c-b465-45f4-8e87-8a8a71f05895', N'1851e4b5-036d-484c-93db-357ecf3e5b36')
+GO
+INSERT [dbo].[AspNetUsers] ([Id], [Email], [EmailConfirmed], [PasswordHash], [SecurityStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEndDateUtc], [LockoutEnabled], [AccessFailedCount], [UserName]) VALUES (N'96199da0-96a3-4410-bef6-a57ced06d64a', N'q@gmail.com', 0, N'ABfAolyoObdGvq8UTsShwdEEIJU9L0uXcNsPNNR3xWTXxD0qlYe3sbmkOMTE2DhiZg==', N'bd45e3d3-b4eb-45c8-989a-32b52a01dd43', NULL, 0, 0, NULL, 1, 0, N'q@gmail.com')
+GO
+INSERT [dbo].[AspNetUsers] ([Id], [Email], [EmailConfirmed], [PasswordHash], [SecurityStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEndDateUtc], [LockoutEnabled], [AccessFailedCount], [UserName]) VALUES (N'b6a36c5c-b465-45f4-8e87-8a8a71f05895', N'ahmed@gmail.com', 0, N'AF3kMfM4Nt1dOCuxmqirP+5VK9QTcqQXPJHj6aFKLsdFgeFPG7umd1ZFl8FvDNuzpg==', N'42fcf2a9-6556-4526-b35c-f647b2a19a8e', NULL, 0, 0, NULL, 1, 0, N'ahmed@gmail.com')
+GO
+SET IDENTITY_INSERT [dbo].[Category] ON 
+
+GO
+INSERT [dbo].[Category] ([CategoryID], [CategoryName]) VALUES (1, N'Shooting')
+GO
+INSERT [dbo].[Category] ([CategoryID], [CategoryName]) VALUES (2, N'Action1')
+GO
+INSERT [dbo].[Category] ([CategoryID], [CategoryName]) VALUES (3, N'Cars')
+GO
+INSERT [dbo].[Category] ([CategoryID], [CategoryName]) VALUES (4, N'Wressling')
+GO
+INSERT [dbo].[Category] ([CategoryID], [CategoryName]) VALUES (5, N'bikes')
+GO
+INSERT [dbo].[Category] ([CategoryID], [CategoryName]) VALUES (6, N'bicycle')
+GO
+INSERT [dbo].[Category] ([CategoryID], [CategoryName]) VALUES (7, N'Racing')
+GO
+INSERT [dbo].[Category] ([CategoryID], [CategoryName]) VALUES (8, N'Zombies')
+GO
+SET IDENTITY_INSERT [dbo].[Category] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Contact] ON 
+
+GO
+INSERT [dbo].[Contact] ([ContactID], [Name], [Subject], [Email], [Message], [Date], [Opened]) VALUES (2, N'Mostafa Fawzi', N'Support', N'most@gmail.com', N'Good Work', N'27/05/2022', N'Not Opend')
+GO
+INSERT [dbo].[Contact] ([ContactID], [Name], [Subject], [Email], [Message], [Date], [Opened]) VALUES (3, N'Ola Ahmed', N'suggestion', N'Ola@gmail.com', N'Add New Games', N'27/05/2022', N'Opend')
+GO
+INSERT [dbo].[Contact] ([ContactID], [Name], [Subject], [Email], [Message], [Date], [Opened]) VALUES (4, N'Aliaa Riad', N'complaint', N'Aliaa@gmail.com', N'Some game does not work', N'27/05/2022', N'Opened')
+GO
+INSERT [dbo].[Contact] ([ContactID], [Name], [Subject], [Email], [Message], [Date], [Opened]) VALUES (5, N'Mostafa Fawzi', N'Support', N'most@gmail.com', N'Good Work', N'27/05/2022', N'Not Opend')
+GO
+INSERT [dbo].[Contact] ([ContactID], [Name], [Subject], [Email], [Message], [Date], [Opened]) VALUES (6, N'Mostafa Fawzi', N'Support', N'most@gmail.com', N'Good Work', N'27/05/2022', N'Not Opend')
+GO
+INSERT [dbo].[Contact] ([ContactID], [Name], [Subject], [Email], [Message], [Date], [Opened]) VALUES (7, N'Mostafa Fawzi', N'Support', N'most@gmail.com', N'Good Work', N'27/05/2022', N'Not Opend')
+GO
+INSERT [dbo].[Contact] ([ContactID], [Name], [Subject], [Email], [Message], [Date], [Opened]) VALUES (8, N'Aliaa Riad', N'complaint', N'Aliaa@gmail.com', N'Some game does not work', N'27/05/2022', N'Opened')
+GO
+INSERT [dbo].[Contact] ([ContactID], [Name], [Subject], [Email], [Message], [Date], [Opened]) VALUES (9, N'Aliaa Riad', N'complaint', N'Aliaa@gmail.com', N'Some game does not work', N'27/05/2022', N'Opened')
+GO
+SET IDENTITY_INSERT [dbo].[Contact] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Game] ON 
+
+GO
+INSERT [dbo].[Game] ([GameID], [Name], [Description], [Image], [NumberOfDownload], [Status], [Date], [categoryid]) VALUES (1, N'Call of Duty2', N'A wonderful serenity has taken possession of my entire soul.', N'abt.jpg', 24, N'New', N'20/05/2022', 4)
+GO
+INSERT [dbo].[Game] ([GameID], [Name], [Description], [Image], [NumberOfDownload], [Status], [Date], [categoryid]) VALUES (2, N'Game Never', N'A wonderful serenity has taken possession of my entire soul.', N'pic2.jpg', 54, N'Old', N'22/05/2022', 3)
+GO
+INSERT [dbo].[Game] ([GameID], [Name], [Description], [Image], [NumberOfDownload], [Status], [Date], [categoryid]) VALUES (4, N'Online Game', N'A wonderful serenity has taken possession of my entire soul.', N'2.jpg', 32, N'Old', N'22/05/2022', 8)
+GO
+INSERT [dbo].[Game] ([GameID], [Name], [Description], [Image], [NumberOfDownload], [Status], [Date], [categoryid]) VALUES (7, N'Ipsum street', N'A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.', N'4.jpg', 70, N'Old', N'04/07/2021', 6)
+GO
+INSERT [dbo].[Game] ([GameID], [Name], [Description], [Image], [NumberOfDownload], [Status], [Date], [categoryid]) VALUES (8, N'House Of Dead', N'A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.', N'5.jpg', 12, N'Old', N'01/09/2020', 3)
+GO
+INSERT [dbo].[Game] ([GameID], [Name], [Description], [Image], [NumberOfDownload], [Status], [Date], [categoryid]) VALUES (9, N'Subway Surf', N'Boy running until cutting his breath', N'back.jpg', 65, N'Old', N'09/11/2021', 4)
+GO
+INSERT [dbo].[Game] ([GameID], [Name], [Description], [Image], [NumberOfDownload], [Status], [Date], [categoryid]) VALUES (10, N'Need For Speed', N'Racing Game', N'0011.jpg', 86, N'Old', N'01/01/2022', 3)
+GO
+INSERT [dbo].[Game] ([GameID], [Name], [Description], [Image], [NumberOfDownload], [Status], [Date], [categoryid]) VALUES (11, N'Super Mario', N'A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.', N'mario03.png', 8, N'Old', N'01/04/2022', 7)
+GO
+INSERT [dbo].[Game] ([GameID], [Name], [Description], [Image], [NumberOfDownload], [Status], [Date], [categoryid]) VALUES (12, N'smile rally', N'A wonderful serenity has taken possession of my entire soul', N'game-nickslimerally-4x3.jpg', 3, N'New', N'26/05/2022 02:47:47 ã', 7)
+GO
+SET IDENTITY_INSERT [dbo].[Game] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Information] ON 
+
+GO
+INSERT [dbo].[Information] ([InfoID], [About], [WhatWeDo], [Mobile], [Address], [FaceBook], [Twitter], [Gmail]) VALUES (1, N'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,', N'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again', N'+001 111 9999 99', N'Area 7-9, Block G, Free zone, Nasr City, Cairo, Egypt', N'www.facebook.com/profile', N'www.twitter.com/profile', N'123example@email.com')
+GO
+SET IDENTITY_INSERT [dbo].[Information] OFF
+GO
+ALTER TABLE [dbo].[AspNetUserClaims]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserClaims] CHECK CONSTRAINT [FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[AspNetUserLogins]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserLogins] CHECK CONSTRAINT [FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId] FOREIGN KEY([RoleId])
+REFERENCES [dbo].[AspNetRoles] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId]
+GO
+ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[Game]  WITH CHECK ADD  CONSTRAINT [FK_Game_Category] FOREIGN KEY([categoryid])
+REFERENCES [dbo].[Category] ([CategoryID])
+GO
+ALTER TABLE [dbo].[Game] CHECK CONSTRAINT [FK_Game_Category]
+GO

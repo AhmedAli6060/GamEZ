@@ -1,0 +1,66 @@
+﻿@model IEnumerable<GamEZ.Models.Game>
+
+@{
+    ViewBag.Title = "Games";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!-- Games Page Starts here -->
+<div class="games">
+    <div class="container">
+        <div class="page-path">
+            <ul class="path-list">
+                <li><a href="~/Home/index">Home</a></li>&nbsp;&nbsp;/&nbsp;&nbsp;
+                <li class="act">Games</li>
+            </ul>
+            <p><a href="~/Home/index">Back to Home</a></p>
+            <div class="clearfix"></div>
+        </div>
+        <h3 class="page-header">
+            List of Games Here
+        </h3>
+
+
+        <div class="main">
+
+            @foreach (var item in Model)
+            {<div class="view view-first">
+                    <img src="~/images/Upload/@Html.DisplayFor(modelItem=>item.Image)" />
+                    <div class="mask">
+                        <h2>@Html.DisplayFor(modelItem => item.Name)</h2>
+                        <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                        @Html.ActionLink("Play It", "Single",new { id = item.GameID },new { @class = "info"})
+                    </div>
+                </div>
+            }
+
+        </div>
+        <div class="side-bar">
+            <h4>New games</h4>
+            <ul class="game-list">
+                @foreach (var item in Model)
+                {
+                    if (item.Status == "New")
+                    {
+                        <li><a href="~/Games/Single/@item.GameID">@item.Name</a></li>
+                    }
+                }
+            </ul>
+            <h4>Old games</h4>
+            <ul class="game-list">
+                @foreach (var item in Model)
+                {
+                    if (item.Status == "Old")
+                    {
+                        <li><a href="~/Games/Single/@item.GameID">@item.Name</a></li>
+                    }
+                }
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<!-- Games Page Ends here -->

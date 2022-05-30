@@ -1,0 +1,56 @@
+﻿@model IEnumerable<GamEZ.Models.Contact>
+
+@{
+    ViewBag.Title = "Message";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container body-content" style="padding-top: 30px; padding-bottom: 30px">
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Message)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Opened)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Message)
+        </td>
+        @if (item.Opened == "Opend")
+        {
+
+            <td class="text-info">
+                @Html.DisplayFor(modelItem => item.Opened)
+            </td>
+        }
+        else
+        {
+            <td class="text-danger">
+                @Html.DisplayFor(modelItem => item.Opened)
+            </td>
+        }
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ContactID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ContactID })
+        </td>
+    </tr>
+        }
+
+    </table>
+
+</div>

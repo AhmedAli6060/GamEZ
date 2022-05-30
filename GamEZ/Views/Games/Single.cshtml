@@ -1,0 +1,107 @@
+﻿@model GamEZ.Models.Game
+
+@{
+    ViewBag.Title = "Single";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Games Page Starts here -->
+<div class="games">
+    <div class="container">
+        <div class="page-path">
+            <ul class="path-list">
+                <li><a href="~/Home/index">Home</a></li>&nbsp;&nbsp;/&nbsp;&nbsp;
+                <li><a href="blog.html">Blog</a></li>&nbsp;&nbsp;/&nbsp;&nbsp;
+                <li class="act">Details</li>
+            </ul>
+            <p><a href="~/Home/index">Back to Home</a></p>
+            <div class="clearfix"></div>
+        </div>
+
+
+        <h3 class="page-header">
+            @Html.DisplayFor(model => model.Name)
+        </h3>
+        <div class="blog-content">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="blog-post">
+                    <h3><a href="#">Internet tend to repeat predefined chunks as necessary</a></h3>
+                    <div class="post-details">
+                        <p>Posted By <a href="#">Jackie</a> &nbsp;&nbsp; On <span>@Html.DisplayFor(item => item.Date)</span> &nbsp;&nbsp; Comments<span>(10)</span></p>
+                    </div>
+                    <img src="~/images/Upload/@Html.DisplayFor(item => item.Image)" alt="@Model.Name">
+                    <h4>@Html.DisplayFor(model => model.Description)</h4>
+                    <p>
+                        @Html.EditorFor(model => model.NumberOfDownload, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly " } })
+                    </p>
+
+                    <p>
+                        @Html.HiddenFor(model => model.GameID)
+                        @Html.HiddenFor(model => model.Name)
+                        @Html.HiddenFor(model => model.Description)
+                        @Html.HiddenFor(model => model.Image)
+                        @Html.HiddenFor(model => model.Status)
+                        @Html.HiddenFor(model => model.Date)
+                        @Html.HiddenFor(model => model.categoryid)
+                        <input type="submit" value="Download" class="btn btn-info" />
+                    </p>
+                </div>
+            }
+
+
+            @using (Html.BeginForm("Comment", "Game", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="comment-box">
+                    <h3 class="page-header">Comment Here </h3>
+                    <div class="text-cmt">
+                        <input type="text" placeholder="Name" required="" />
+                        <input type="text" placeholder="Email" required="" />
+                    </div>
+                    <div class="text-cmt">
+                        <textarea placeholder="Message" required=""></textarea>
+                    </div>
+                    <div class="text-cmt">
+                        <input type="submit" value="Post" />
+                    </div>
+                </div>
+            }
+
+
+        </div>
+        <div class="blog-sidebar">
+            <h3 class="page-header">Catgeories</h3>
+            <ul class="product-categories color">
+                @foreach (var item in ViewBag.catName)
+                {
+                    <li class="cat-item cat-item-42"><a href="#">@item</a> @*<span class="count">@item</span>*@</li>
+                }
+
+            </ul>
+            <h3 class="page-header">Subscribe</h3>
+            <div class="subscribe">
+                <h4>Subscribe For News</h4>
+                <input type="text" placeholder="Email.." required="" />
+                <input type="submit" value="Subscribe" />
+            </div>
+            <h3 class="page-header">Papular Tags</h3>
+            <ul class="tags_links">
+                <li><a href="#">Design</a></li>
+                <li><a href="#">Branding</a></li>
+                <li><a href="#">Art</a></li>
+                <li><a href="#">Developing</a></li>
+                <li><a href="#">CSS</a></li>
+                <li><a href="#">HTML</a></li>
+                <li><a href="#">Wordpress</a></li>
+                <li><a href="#">Photography</a></li>
+            </ul>
+
+        </div>
+        <div class="clearfix"></div>
+
+    </div>
+</div>
+<!-- What New Part Endss Here -->

@@ -1,0 +1,125 @@
+﻿@model GamEZ.Models.Game
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container body-content" style="padding-top:30px;padding-bottom:30px">
+
+    <h2>Edit</h2>
+
+    @using (Html.BeginForm("Edit", "Games", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <h4>Game</h4>
+
+    <div class="alert alert-danger" id="error_div" style="display:none">
+        <span id="view_err"></span>
+    </div>
+
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.GameID)
+    @Html.HiddenFor(model => model.Image)
+    @Html.HiddenFor(model => model.Date)
+    @Html.HiddenFor(model => model.NumberOfDownload)
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Status", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" class="form-control" name="upload" id="myImage" />
+            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.categoryid, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.categoryid, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" id="save" class="btn btn-info" />
+        </div>
+    </div>
+</div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+</div>
+
+
+@section scripts{
+    <script>
+        $(function () {
+            $("#save").click(function () {
+
+                /*Checkif the input is empty*/
+                //if ($("#myImage").val() == "") {
+                //    $("#error_div").fadeIn();
+                //    $("#view_err").append("Please Upload Image");
+                //    return false;
+                //}
+
+                if ($("#myImage").val() != "") {
+
+                    //Checkif the image extenstion is valid
+                    var filename = document.getElementById("myImage").value;
+                    var extensionImg = filename.substr(filename.lastIndexOf('.') + 1);
+                    var validExtensions = ['jpg', 'png', 'gif', 'jpeg', 'bmp'];
+
+                    if ($.inArray(extensionImg, validExtensions) == -1) {
+                        $("#error_div").fadeIn();
+                        $("#view_err").append("Please choose an image with the correct extension");
+                        return false;
+                    }
+
+                    //Checkif the image size is valid(2 mb)
+                    var myFilesize = document.getElementById("myImage").files[0].size / 1024 / 1024;
+
+                    if (myFilesize > 2) {
+                        $("#error_div").fadeIn();
+                        $("#view_err").append("Please choose an image whose size is less than 2MB");
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
+}

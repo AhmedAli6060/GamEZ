@@ -1,0 +1,53 @@
+﻿@model GamEZ.Models.Information
+
+
+@{
+    ViewBag.Title = "About";
+
+}
+
+<!-- Games Page Starts here -->
+
+<div class="games">
+    <div class="container">
+        <div class="page-path">
+            <ul class="path-list">
+                <li><a href="~/Home/Index">Home</a></li>&nbsp;&nbsp;/&nbsp;&nbsp;
+                <li class="act">Features</li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="blog-content">
+            <h3 class="page-header">About us</h3>
+            <div class="about-top">
+                <img src="~/images/Upload/@ViewBag.img" style="width:72%" alt="">
+                <div class="about-details">
+                    <h4>@Html.DisplayFor(model => model.About)</h4>
+                    <p>@Html.DisplayFor(model => model.WhatWeDo)</p>
+                    <a href="#">More</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <h3 class="page-header">What we do</h3>
+            <p>@Html.DisplayFor(model => model.WhatWeDo)</p>
+            <p>@Html.DisplayFor(model => model.WhatWeDo)</p>
+            <p>@Html.DisplayFor(model => model.WhatWeDo)</p>
+
+        </div>
+
+        <div class="blog-sidebar">
+            <h3 class="page-header">Top Features</h3>
+            @foreach (var item in ViewBag.Topimg)
+            {
+                <div class="fetures">
+                    <img src="~/images/Upload/@item" alt="">
+                    <div class="caption">
+                        <a href="#">Play Now</a>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- What New Part Endss Here -->

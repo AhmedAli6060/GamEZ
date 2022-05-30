@@ -1,0 +1,60 @@
+﻿@model IEnumerable<GamEZ.Models.Game>
+
+@{
+    ViewBag.Title = "Games";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container body-content" style="padding-top: 30px; padding-bottom: 30px">
+
+    <div class="page-path">
+        <ul class="path-list">
+            <li><a href="~/Home/index">Home</a></li>&nbsp;&nbsp;/&nbsp;&nbsp;
+            <li class="act">Games</li>
+        </ul>
+        <p><a href="~/Home/index">Back to Home</a></p>
+        <div class="clearfix"></div>
+    </div>
+    <hr />
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.CategoryName)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="padding-top:35px">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td style="padding-top:35px;color:firebrick">
+                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                </td>
+                <td>
+                    <img id="imgid" src="~/images/Upload/@Html.DisplayFor(modelItem=>item.Image)"
+                         style="width:135px;height:80px;display:block;margin:auto" class="thumbnail" alt="@item.Name" />
+                </td>
+                <td style="padding-top:35px">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.GameID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.GameID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.GameID })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

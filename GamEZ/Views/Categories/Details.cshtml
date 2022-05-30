@@ -1,0 +1,29 @@
+﻿@model GamEZ.Models.Category
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container body-content" style="padding-top: 30px; padding-bottom: 30px">
+    <h2>Details</h2>
+
+    <div>
+        <h4>Category</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CategoryName)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    </div>
